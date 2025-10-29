@@ -2,6 +2,7 @@ const express=require("express");
 const bodyParser=require("body-parser");
 const app=express();
 const puerto=3001;
+
 let laptop=[
     {id:1,marca:"hp",procesador:"i7",memoria:"16 GB",disco:"1 TB"},
     {id:2,marca:"asus",procesador:"i7",memoria:"16 GB",disco:"1 TB"},
@@ -19,6 +20,7 @@ app.use("/laptop",(request,response,next)=>{
 });//se ejecuta apra cualquier accion http
 
 app.get("/laptop",(request,response)=>{//listar
+    
     //response.send("get contactos");//repuesta codifo 200
     console.log("ingresa a get");
     response.send(laptop);
@@ -50,7 +52,7 @@ app.delete("/laptop/:id",(req,resp)=>{
     let index=laptop.findIndex(laptop => laptop.id === id)
     let eliminado = laptop.splice(index, 1);
     console.log("id",id ,laptop);
-    resp.send();
+    resp.send({id:id});
 });
 
 app.listen(3001,()=>{
